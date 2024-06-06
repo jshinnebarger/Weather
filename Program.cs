@@ -1,9 +1,14 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using Weather.Data.Services;
+
+const string BASE_ADDRESS = "https://api.openweathermap.org/";
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddScoped<WeatherService>();
+builder.Services.AddScoped(sp => new HttpClient {
+    BaseAddress = new Uri(BASE_ADDRESS)
+});
 
 var app = builder.Build();
 

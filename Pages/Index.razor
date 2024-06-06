@@ -1,3 +1,73 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; margin-top: 50px;">
+    <label>
+        This app will provide the current weather for you.  
+        Simply choose one of the options below for determining the location used and click the button to see results!
+    </label>
+    <div style="display: flex; flex-direction: column; margin-top: 20px;">
+        <div style="display: flex; flex-direction: row; align-items: flex-start; width: 300px; margin: 5px;">
+            <input type="radio" checked="@(CurrentChecked == Checked.CityName)" @onclick="OnCityNameChecked">
+            <div style="display: flex; flex-direction: column; justify-content: start; width: 100%;">
+                <div style="display: flex; flex-direction: row; align-items:flex-start; width: 100%;">
+                    <label style="display: inline-block; text-align: left; padding-left: 5px;">
+                        City Name:
+                    </label>
+                    <input @bind="cityName" disabled="@(CurrentChecked != Checked.CityName)" style="margin-left: auto;">
+                </div>
+                <div style="display: flex; flex-direction: row; align-items:flex-start; width: 100%; margin-top: 10px;">
+                    <label style="display: inline-block; text-align: left; padding-left: 5px;">
+                        State:
+                    </label>
+                    <input @bind="state" disabled="@(CurrentChecked != Checked.CityName)" style="margin-left: auto;">
+                </div>
+                <div style="display: flex; flex-direction: row; align-items:flex-start; width: 100%; margin-top: 10px;">
+                    <label style="display: inline-block; text-align: left; padding-left: 5px;">
+                        Country Code:
+                    </label>
+                    <input @bind="cityCountryCode" disabled="@(CurrentChecked != Checked.CityName)" style="margin-left: auto;">
+                </div>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: row; align-items: flex-start; width: 300px; margin: 5px;">
+            <input type="radio" checked="@(CurrentChecked == Checked.Zipcode)" @onclick="OnZipCodeChecked">
+            <div style="display: flex; flex-direction: column; justify-content: start; width: 100%;">
+                <div style="display: flex; flex-direction: row; align-items:flex-start; width: 100%;">
+                    <label style="display: inline-block; text-align: left; padding-left: 5px;">
+                        Zipcode:
+                    </label>
+                    <input @bind="zipcode" disabled="@(CurrentChecked != Checked.Zipcode)" style="margin-left: auto;">
+                </div>
+                <div style="display: flex; flex-direction: row; align-items:flex-start; width: 100%; margin-top: 10px;">
+                    <label style="display: inline-block; text-align: left; padding-left: 5px;">
+                        Country Code:
+                    </label>
+                    <input @bind="zipCountryCode" disabled="@(CurrentChecked != Checked.Zipcode)" style="margin-left: auto;">
+                </div>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: row; align-items: flex-start; width: 300px; margin: 5px;">
+            <input type="radio" checked="@(CurrentChecked == Checked.LatLon)" @onclick="OnLatLonChecked">
+            <div style="display: flex; flex-direction: column; justify-content: start; width: 100%;">
+                <div style="display: flex; flex-direction: row; align-items:flex-start; width: 100%;">
+                    <label style="display: inline-block; text-align: left; padding-left: 5px;">
+                        Latitude:
+                    </label>
+                    <input @bind="latitude" disabled="@(CurrentChecked != Checked.LatLon)" style="margin-left: auto;">
+                </div>
+                <div style="display: flex; flex-direction: row; align-items:flex-start; width: 100%; margin-top: 10px;">
+                    <label style="display: inline-block; text-align: left; padding-left: 5px;">
+                        Longitude:
+                    </label>
+                    <input @bind="longitude" disabled="@(CurrentChecked != Checked.LatLon)" style="margin-left: auto;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="weather-button" @onclick="OnViewResults" style="margin: 20px 5px 5px 5px;">
+        Check Results
+    </button>
+    <label style="margin: 5px;">
+        @results
+    </label>
+</div>
